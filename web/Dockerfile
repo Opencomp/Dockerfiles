@@ -71,4 +71,4 @@ WORKDIR /var/www/html
 
 EXPOSE 80
 
-CMD /usr/sbin/php-fpm7.0 -D && /usr/sbin/nginx
+CMD /usr/sbin/php-fpm7.0 -D && composer install && bower install && /usr/sbin/nginx
