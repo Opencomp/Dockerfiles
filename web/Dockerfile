@@ -20,9 +20,12 @@ RUN add-apt-repository -y ppa:ondrej/php-7.0 && apt-get update -qqy && \
     php7.0-curl \
     php7.0-mcrypt \
     php7.0-mysql \
+    php7.0-sqlite \
     php7.0-opcache \
     php7.0-intl \
     curl \
+    npm \
+    git \
     sendmail && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -56,9 +59,13 @@ RUN usermod -u 1000 www-data && \
     ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf && \
     ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log && \
+    ln -s /usr/bin/nodejs /usr/bin/node && \
     mkdir -p /var/www/html && \
     chown -R www-data:www-data /var/www && \
-    mkdir /run/php && chown www-data:www-data -R /run/php
+    mkdir /run/php && chown www-data:www-data -R /run/php && \
+    npm install --global bower && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    composer --version
 
 WORKDIR /var/www/html
 
