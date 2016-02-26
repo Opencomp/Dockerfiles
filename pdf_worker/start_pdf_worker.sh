@@ -6,4 +6,4 @@ while : ; do
     sleep 1
 done
 
-/var/www/html/bin/cake generate_pupil_report -v
+/var/www/html/Console/cake generate_pupil_report -v
