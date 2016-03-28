@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 while : ; do
     [[ -f "/var/www/html/Vendor/autoload.php" ]] && break
