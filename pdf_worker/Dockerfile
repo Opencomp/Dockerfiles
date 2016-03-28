@@ -16,7 +16,8 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure intl \
     && docker-php-ext-install -j$(nproc) intl \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /var/www/html
 
 ADD ./start_pdf_worker.sh /opt/start_pdf_worker.sh
 
