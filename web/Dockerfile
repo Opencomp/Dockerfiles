@@ -14,6 +14,7 @@ RUN apt-get update -qqy && \
     php-common \
     php-curl \
     php-mcrypt \
+    php-mbstring \
     php-mysql \
     php-sqlite3 \
     php-opcache \
