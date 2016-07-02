@@ -30,7 +30,8 @@ RUN apt-get update -qqy && \
 # On clone l'extension php me   mcached depuis les sources et on la compile
 # la version dans les dépôts Ubuntu présente un bug qui empêche d'utiliser
 # memcached comme backend pour le stockage des données de session PHP.
-RUN git clone https://github.com/php-memcached-dev/php-memcached && \
+RUN cd /opt && \
+    git clone https://github.com/php-memcached-dev/php-memcached && \
     cd php-memcached && \
     git checkout -b php7 origin/php7 && \
     /usr/bin/phpize && \
@@ -42,7 +43,7 @@ RUN git clone https://github.com/php-memcached-dev/php-memcached && \
     rm -rf php-memcached/
 
 # On fait le ménage pour alléger le poids de l'image
-RUN apt-get remove -qqy php-dev pkg-config libmemcached-dev && \
+RUN apt-get remove -qqy php-dev pkg-config && \
     apt-get autoremove -qqy && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
