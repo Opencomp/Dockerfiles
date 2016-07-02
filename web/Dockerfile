@@ -9,24 +9,45 @@ ENV LANG=fr_FR.UTF-8 LANGUAGE=fr_FR:fr LC_ALL=fr_FR.UTF-8
 
 RUN apt-get update -qqy && \
     apt-get install -qqy \
+    curl \
+    git \
+    libmemcached-dev \
     nginx \
-    php-fpm \
+    npm \
     php-common \
     php-curl \
-    php-mcrypt \
-    php-mbstring \
-    php-mysql \
-    php-sqlite3 \
-    php-opcache \
+    php-dev \
+    php-fpm \
     php-intl \
-    php-memcached \
-    curl \
-    npm \
-    git \
-    sendmail && \
+    php-mbstring \
+    php-mcrypt \
+    php-mysql \
+    php-opcache \
+    php-sqlite3 \
+    pkg-config \
+    sendmail
+
+# On clone l'extension php me   mcached depuis les sources et on la compile
+# la version dans les dépôts Ubuntu présente un bug qui empêche d'utiliser
+# memcached comme backend pour le stockage des données de session PHP.
+RUN git clone https://github.com/php-memcached-dev/php-memcached && \
+    cd php-memcached && \
+    git checkout -b php7 origin/php7 && \
+    /usr/bin/phpize && \
+    ./configure --with-php-config=/usr/bin/php-config && \
+    make && \
+    make install && \
+    echo "extension=memcached.so" > /etc/php/7.0/fpm/conf.d/20-memcached.ini && \
+    cd .. && \
+    rm -rf php-memcached/
+
+# On fait le ménage pour alléger le poids de l'image
+RUN apt-get remove -qqy php-dev pkg-config libmemcached-dev && \
+    apt-get autoremove -qqy && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Modification des paramètres par défaut de nginx, php-fpm
 RUN sed -i -e "s/worker_processes  1/worker_processes 5/" /etc/nginx/nginx.conf && \
     sed -i -e "s/keepalive_timeout\s*65/keepalive_timeout 2/" /etc/nginx/nginx.conf && \
     sed -i -e "s/keepalive_timeout 2/keepalive_timeout 2;\n\tclient_max_body_size 100m/" /etc/nginx/nginx.conf && \
