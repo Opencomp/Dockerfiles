@@ -23,6 +23,7 @@ RUN add-apt-repository -y ppa:ondrej/php-7.0 && apt-get update -qqy && \
     php7.0-sqlite \
     php7.0-opcache \
     php7.0-intl \
+    php-memcached \
     curl \
     npm \
     git \
@@ -47,6 +48,8 @@ RUN sed -i -e "s/worker_processes  1/worker_processes 5/" /etc/nginx/nginx.conf 
     sed -i -e "s/pm.min_spare_servers = 1/pm.min_spare_servers = 2/g" /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i -e "s/pm.max_spare_servers = 3/pm.max_spare_servers = 4/g" /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i -e "s/pm.max_requests = 500/pm.max_requests = 200/g" /etc/php/7.0/fpm/pool.d/www.conf && \
+    sed -i -e "s/session.save_handler = files/session.save_handler = memcached/g" /etc/php/7.0/fpm/pool.d/www.conf && \
+    sed -i -e "s/;session.save_path = .*/session.save_path = \"memcached:11211\"/g" /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i -e "s/;listen.mode = 0660/listen.mode = 0750/g" /etc/php/7.0/fpm/pool.d/www.conf && \
     find /etc/php/7.0/cli/conf.d/ -name "*.ini" -exec sed -i -re 's/^(\s*)#(.*)/\1;\2/g' {} \;
 
