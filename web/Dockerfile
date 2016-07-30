@@ -24,6 +24,7 @@ RUN apt-get update -qqy && \
     php-mysql \
     php-opcache \
     php-sqlite3 \
+    php-xml \
     php-zip \
     pkg-config \
     sendmail
