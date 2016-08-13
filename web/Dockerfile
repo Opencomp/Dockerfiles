@@ -26,8 +26,7 @@ RUN apt-get update -qqy && \
     php-sqlite3 \
     php-xml \
     php-zip \
-    pkg-config \
-    sendmail
+    pkg-config
 
 # On clone l'extension php me   mcached depuis les sources et on la compile
 # la version dans les dépôts Ubuntu présente un bug qui empêche d'utiliser
@@ -52,6 +51,7 @@ RUN apt-get remove -qqy php-dev pkg-config && \
 
 # Modification des paramètres par défaut de nginx, php-fpm
 RUN sed -i -e "s/worker_processes  1/worker_processes 5/" /etc/nginx/nginx.conf && \
+    sed -i -e "s/user www-data;/#user www-data;/" /etc/nginx/nginx.conf && \
     sed -i -e "s/keepalive_timeout\s*65/keepalive_timeout 2/" /etc/nginx/nginx.conf && \
     sed -i -e "s/keepalive_timeout 2/keepalive_timeout 2;\n\tclient_max_body_size 100m/" /etc/nginx/nginx.conf && \
     echo "daemon off;" >> /etc/nginx/nginx.conf && \
@@ -77,6 +77,8 @@ ADD ./nginx.conf /etc/nginx/sites-available/default.conf
 
 RUN usermod -u 1000 www-data && \
     usermod -a -G users www-data && \
+    touch /var/log/php7.0-fpm.log && \
+    touch /run/nginx.pid && \
     rm -Rf /etc/nginx/conf.d/* && \
     rm -Rf /etc/nginx/sites-available/default && \
     ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf && \
@@ -85,13 +87,18 @@ RUN usermod -u 1000 www-data && \
     ln -s /usr/bin/nodejs /usr/bin/node && \
     mkdir -p /var/www/html && \
     chown -R www-data:www-data /var/www && \
+    chown www-data:www-data /var/log/php7.0-fpm.log && \
+    chown www-data:www-data /var/lib/nginx && \
+    chown www-data:www-data /var/log/nginx && \
+    chown www-data:www-data /run/nginx.pid && \
     mkdir /run/php && chown www-data:www-data -R /run/php && \
     npm install --global bower && \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
-    composer --version
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+USER www-data
 
 WORKDIR /var/www/html
 
-EXPOSE 80
+EXPOSE 8080
 
-CMD /usr/sbin/php-fpm7.0 -D && composer -n install && bower install --config.interactive=false --allow-root  && /usr/sbin/nginx
+CMD /usr/sbin/php-fpm7.0 -D && composer -n install && bower install --config.interactive=false  && /usr/sbin/nginx
