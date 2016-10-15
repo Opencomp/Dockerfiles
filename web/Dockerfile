@@ -11,7 +11,6 @@ RUN apt-get update -qqy && \
     apt-get install -qqy \
     curl \
     git \
-    libmemcached-dev \
     nginx \
     npm \
     php-common \
@@ -27,21 +26,6 @@ RUN apt-get update -qqy && \
     php-xml \
     php-zip \
     pkg-config
-
-# On clone l'extension php me   mcached depuis les sources et on la compile
-# la version dans les dépôts Ubuntu présente un bug qui empêche d'utiliser
-# memcached comme backend pour le stockage des données de session PHP.
-RUN cd /opt && \
-    git clone https://github.com/php-memcached-dev/php-memcached && \
-    cd php-memcached && \
-    git checkout -b php7 origin/php7 && \
-    /usr/bin/phpize && \
-    ./configure --with-php-config=/usr/bin/php-config && \
-    make && \
-    make install && \
-    echo "extension=memcached.so" > /etc/php/7.0/fpm/conf.d/20-memcached.ini && \
-    cd .. && \
-    rm -rf php-memcached/
 
 # On fait le ménage pour alléger le poids de l'image
 RUN apt-get remove -qqy php-dev pkg-config && \
@@ -63,8 +47,6 @@ RUN sed -i -e "s/worker_processes  1/worker_processes 5/" /etc/nginx/nginx.conf 
     sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php/7.0/cli/php.ini && \
     sed -i -e "s/upload_max_filesize\s*=\s*2M/upload_max_filesize = 100M/g" /etc/php/7.0/cli/php.ini && \
     sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 100M/g" /etc/php/7.0/cli/php.ini && \
-    sed -i -e "s/session.save_handler = files/session.save_handler = memcached/g" /etc/php/7.0/fpm/php.ini && \
-    sed -i -e "s/;session.save_path = .*/session.save_path = \"memcached:11211\"/g" /etc/php/7.0/fpm/php.ini && \
 
     # Modfication des paramètres de php-fpm
     sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/7.0/fpm/php-fpm.conf && \
