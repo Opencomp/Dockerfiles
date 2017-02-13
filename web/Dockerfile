@@ -15,6 +15,7 @@ RUN apt-get update -qqy && \
     nginx \
     npm \
     php-common \
+    php-gd \
     php-curl \
     php-dev \
     php-fpm \
