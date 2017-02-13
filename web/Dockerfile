@@ -10,7 +10,7 @@ ENV LANG=fr_FR.UTF-8 LANGUAGE=fr_FR:fr LC_ALL=fr_FR.UTF-8
 RUN apt-get update -qqy && \
     apt-get install -qqy \
     curl \
-    freetype \
+    freetype* \
     git \
     libmemcached-dev \
     nginx \
