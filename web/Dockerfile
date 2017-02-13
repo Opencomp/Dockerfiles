@@ -10,15 +10,16 @@ ENV LANG=fr_FR.UTF-8 LANGUAGE=fr_FR:fr LC_ALL=fr_FR.UTF-8
 RUN apt-get update -qqy && \
     apt-get install -qqy \
     curl \
+    freetype \
     git \
     libmemcached-dev \
     nginx \
     npm \
     php-common \
-    php-gd \
     php-curl \
     php-dev \
     php-fpm \
+    php-gd \
     php-intl \
     php-mbstring \
     php-mcrypt \
