@@ -101,7 +101,8 @@ RUN usermod -u 1000 www-data && \
     chown www-data:www-data /var/log/nginx && \
     chown www-data:www-data /run/nginx.pid && \
     mkdir /run/php && chown www-data:www-data -R /run/php && \
-    npm install --global bower && \
+    npm install npm@latest -g && \
+    npm install --global bower webpack && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 USER www-data
