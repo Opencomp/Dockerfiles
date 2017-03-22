@@ -28,7 +28,8 @@ RUN apt-get update -qqy && \
     php-sqlite3 \
     php-xml \
     php-zip \
-    pkg-config
+    pkg-config \
+    sudo
 
 # On clone l'extension php me   mcached depuis les sources et on la compile
 # la version dans les dépôts Ubuntu présente un bug qui empêche d'utiliser
