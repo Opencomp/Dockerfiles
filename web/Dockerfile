@@ -28,8 +28,7 @@ RUN apt-get update -qqy && \
     php-sqlite3 \
     php-xml \
     php-zip \
-    pkg-config \
-    sudo
+    pkg-config
 
 # On clone l'extension php me   mcached depuis les sources et on la compile
 # la version dans les dépôts Ubuntu présente un bug qui empêche d'utiliser
@@ -104,7 +103,8 @@ RUN usermod -u 1000 www-data && \
     mkdir /run/php && chown www-data:www-data -R /run/php && \
     npm install npm@latest -g && \
     npm install --global bower grunt && \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    composer global require "hirak/prestissimo:^0.3"
 
 USER www-data
 
