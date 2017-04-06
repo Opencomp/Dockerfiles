@@ -27,6 +27,7 @@ RUN apt-get update -qqy && \
     php-opcache \
     php-sqlite3 \
     php-xml \
+    php-xdebug \
     php-zip \
     pkg-config
 
