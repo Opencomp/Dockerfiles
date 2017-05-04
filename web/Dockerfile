@@ -43,6 +43,7 @@ RUN cd /opt && \
     make && \
     make install && \
     echo "extension=memcached.so" > /etc/php/7.0/fpm/conf.d/20-memcached.ini && \
+    echo "extension=memcached.so" > /etc/php/7.0/cli/conf.d/20-memcached.ini && \
     cd .. && \
     rm -rf php-memcached/
 
