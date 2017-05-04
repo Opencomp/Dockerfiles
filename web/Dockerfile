@@ -4,7 +4,6 @@ MAINTAINER Jean Traullé <jean@opencomp.fr>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN locale-gen fr_FR.UTF-8  
 ENV LANG=fr_FR.UTF-8 LANGUAGE=fr_FR:fr LC_ALL=fr_FR.UTF-8
 
 RUN apt-get update -qqy && \
