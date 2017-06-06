@@ -9,11 +9,20 @@ ENV LANG=fr_FR.UTF-8 LANGUAGE=fr_FR:fr LC_ALL=fr_FR.UTF-8
 RUN apt-get update -qqy && \
     apt-get install -qqy \
     curl \
+    # Gestion des polices avec GD
     freetype* \
+    # Pour cloner avec composer si nécessaire
     git \
+    # Pour construire la lib memcached
     libmemcached-dev \
+    # Pour wkhtmltopdf
+    libxrender1 \
+    libfontconfig1 \
+    # Serveur http
     nginx \
+    # Pour Grunt
     npm \
+    # PHP et extensions
     php-common \
     php-curl \
     php-dev \
