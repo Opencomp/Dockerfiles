@@ -21,6 +21,8 @@ RUN 	apk add --no-cache --virtual .persistent-deps \
     	docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
     	docker-php-ext-configure intl && \
     	docker-php-ext-install gd pdo_mysql mbstring intl && \
+
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
 	
 	# Installation de l'extension memcached depuis les sources
 	mkdir /opt && \
