@@ -18,6 +18,8 @@ RUN apt-get update && apt-get install -y \
         libmcrypt-dev \
         # Pour intl
         libicu-dev \
+	# Pour l'optimisation des images
+	advancecomp pngcrush gifsicle jpegoptim libjpeg-progs libjpeg8-dbg libimage-exiftool-perl imagemagick pngnq libpng-dev optipng pngquant\
     && docker-php-ext-install -j$(nproc) iconv mcrypt intl pdo pdo_mysql zip \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
