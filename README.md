@@ -4,7 +4,11 @@ Dockerfiles for building Opencomp specific Docker images
 
 ## opencomp/web
 
-[![](https://images.microbadger.com/badges/image/opencomp/web.svg)](https://microbadger.com/images/opencomp/web "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/opencomp/nginx.svg)](https://microbadger.com/images/opencomp/nginx "Get your own image badge on microbadger.com")
+
+## opencomp/php
+
+[![](https://images.microbadger.com/badges/image/opencomp/php.svg)](https://microbadger.com/images/opencomp/php "Get your own image badge on microbadger.com")
 
 ## opencomp/pdf_worker
 
