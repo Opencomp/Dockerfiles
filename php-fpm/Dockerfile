@@ -1,4 +1,4 @@
-FROM php:fpm
+FROM php:7.1-fpm
 
 MAINTAINER Jean Traullé
 
@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
         # Pour intl
         libicu-dev \
 	# Pour l'optimisation des images
-	advancecomp pngcrush gifsicle jpegoptim libjpeg-progs imagemagick pngnq libpng-dev optipng pngquant\
+	jpegoptim optipng pngquant gifsicle \
     && docker-php-ext-install -j$(nproc) iconv mcrypt intl pdo pdo_mysql zip \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
