@@ -11,8 +11,6 @@ RUN apt-get update && apt-get install -y \
         libpng12-dev \
         # Pour cloner avec composer si nécessaire
         git \
-        # Pour construire la lib memcached
-        libmemcached-dev \
         # Pour wkhtmltopdf
         libxrender1 \
         libmcrypt-dev \
@@ -20,7 +18,7 @@ RUN apt-get update && apt-get install -y \
         libicu-dev \
 	# Pour l'optimisation des images
 	jpegoptim optipng pngquant gifsicle \
-    && docker-php-ext-install -j$(nproc) iconv mcrypt intl pdo pdo_mysql zip \
+    && docker-php-ext-install -j$(nproc) iconv intl mcrypt pdo pdo_mysql zip \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
@@ -28,8 +26,8 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pecl install memcached-3.0.3 \
-    && docker-php-ext-enable memcached \
+RUN pecl install redis-3.1.3 \
+    && docker-php-ext-enable redis \
     && rm -rf /tmp/*
 
 # set recommended opcache PHP.ini settings
