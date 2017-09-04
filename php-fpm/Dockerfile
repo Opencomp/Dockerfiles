@@ -45,6 +45,4 @@ RUN sed -i -e 's/listen.*/listen = 0.0.0.0:9000/' /usr/local/etc/php-fpm.conf
 
 RUN echo "expose_php=0" > /usr/local/etc/php/php.ini
 
-ENTRYPOINT ["docker-entrypoint.sh"]
-
 CMD ["php-fpm"]
