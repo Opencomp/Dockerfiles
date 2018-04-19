@@ -10,7 +10,7 @@ RUN apk add --no-cache \
             # For wkhtmltopdf runtime dependencies
             zlib glib openssl fontconfig freetype libx11 libxext libxrender \
             # For GD PHP extension
-            ttf-freefont freetype-dev libjpeg-turbo-dev libpng-dev \
+            ttf-freefont ttf-dejavu freetype-dev libjpeg-turbo-dev libpng-dev \
             # For installing composer dependencies
             git \
             # For building/installing intl PHP extension
