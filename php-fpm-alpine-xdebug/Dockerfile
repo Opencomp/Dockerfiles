@@ -14,6 +14,13 @@ ENV PHP_XDEBUG_PROFILER_OUTPUT_DIR ${PHP_XDEBUG_PROFILER_OUTPUT_DIR:-"/tmp"}
 
 RUN apk add --no-cache $PHPIZE_DEPS \
         && pecl install xdebug \
-        && docker-php-ext-enable xdebug
+        && docker-php-ext-enable xdebug \
+        && git clone https://github.com/nikic/php-ast.git \
+	&& cd php-ast && phpize && ./configure \
+	&& make \
+	&& make install \
+	&& cd .. \
+	&& rm -rf php-ast \
+	&& docker-php-ext-enable ast
 
 COPY xdebug.ini /usr/local/etc/php/conf.d/xdebug-dev.ini
