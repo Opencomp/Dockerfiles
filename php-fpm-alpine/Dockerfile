@@ -1,4 +1,4 @@
-FROM php:7.3-fpm-alpine3.7
+FROM php:7.3-fpm-alpine3.8
 
 MAINTAINER Jean Traullé <jean@opencomp.fr>
 
