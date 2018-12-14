@@ -8,7 +8,7 @@ RUN apk add --no-cache \
             # For SimpleXML PHP extension
             libxml2 libxml2-dev \
             # For wkhtmltopdf runtime dependencies
-            zlib glib openssl fontconfig freetype libx11 libxext libxrender \
+            zlib glib libzip-dev openssl fontconfig freetype libx11 libxext libxrender \
             # For GD PHP extension
             ttf-freefont ttf-dejavu freetype-dev libjpeg-turbo-dev libpng-dev \
             # For installing composer dependencies
