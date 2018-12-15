@@ -59,6 +59,6 @@ RUN apk add --no-cache \
 # multi-stages build. The resulting binary is passed into a
 # fresh alpine image and only required librairies needed
 # to run wkhtmltopdf are installed
-COPY --from=opencomp/wkhtmltopdf:0.12.4-alpine3.7 /usr/bin/wkhtmltopdf /usr/bin/wkhtmltopdf
+COPY --from=opencomp/wkhtmltopdf:0.12.5-alpine3.8 /bin/wkhtmltopdf /usr/bin/wkhtmltopdf
 
 CMD ["php-fpm"]
