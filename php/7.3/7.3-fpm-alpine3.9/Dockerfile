@@ -24,6 +24,9 @@ RUN apk add --no-cache \
     && apk add --no-cache \
                --repository http://dl-cdn.alpinelinux.org/alpine/v3.9/community/ \
                jpegoptim pngquant \
+    # We force update of upstream installed packages (from base image)
+    # This can help solve CVE issues more quickly than waiting the base image to be updated
+    && apk update && apk upgrade \
     # Install PHP extensions
     # -- mbstring intl simplexml are CakePHP requirements
     # -- pdo and pdo_mysql allow connection to MySQL using PHP Data Objects
