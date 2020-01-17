@@ -78,7 +78,7 @@ RUN apk add --no-cache \
 && apk del .build-deps
 
 # Image
-FROM alpine:3.9
+FROM alpine:3.10
 
 RUN apk add --no-cache \
     libstdc++ libx11 libxrender libxext libssl1.1 ca-certificates
