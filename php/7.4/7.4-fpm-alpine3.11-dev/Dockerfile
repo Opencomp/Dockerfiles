@@ -3,8 +3,10 @@ FROM opencomp/php:7.4-fpm-alpine3.11
 LABEL maintainer="Jean Traullé <jean@opencomp.fr>"
 
 RUN apk add --no-cache \
-            yarn \
+            # For building php extensions
+            autoconf build-base \
             # For installing composer dependencies
+            yarn \
             git \
             # For panther testing
             chromium \
@@ -13,6 +15,9 @@ RUN apk add --no-cache \
     && composer global require hirak/prestissimo \
     && pecl install pcov \
     && docker-php-ext-enable pcov \
+    # Uninstalling all required dev dependencies
+    # used during compiling of PHP extensions.
+    && apk del autoconf build-base \
     # Clearing package cache and temp directory
     && rm -rf /var/cache/apk/* /tmp/*
 

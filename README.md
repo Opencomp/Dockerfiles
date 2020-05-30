@@ -8,7 +8,7 @@ Dockerfiles for building Opencomp specific Docker images
 
 ## opencomp/php
 
-[![](https://images.microbadger.com/badges/image/opencomp/php:alpine3.7.svg)](https://microbadger.com/images/opencomp/php:alpine3.7 "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/opencomp/php:7.4-fpm-alpine3.11.svg)](https://microbadger.com/images/opencomp/php:7.4-fpm-alpine3.11 "Get your own image badge on microbadger.com")
 
 ## opencomp/wkhtmltopdf
 
