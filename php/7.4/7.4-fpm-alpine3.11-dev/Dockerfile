@@ -13,8 +13,8 @@ RUN apk add --no-cache \
             chromium-chromedriver \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && composer global require hirak/prestissimo \
-    && pecl install pcov \
-    && docker-php-ext-enable pcov \
+    && pecl install pcov ast \
+    && docker-php-ext-enable pcov ast \
     # Uninstalling all required dev dependencies
     # used during compiling of PHP extensions.
     && apk del autoconf build-base \
