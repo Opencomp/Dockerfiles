@@ -1,26 +1,28 @@
-FROM python:2.7
+FROM python
 
 MAINTAINER Jean Traullé
 
-RUN apt-get update                                                      && \
-    apt-get install -y --no-install-recommends openjdk-7-jre graphviz   && \
-    apt-get autoremove -y                                               && \
-    rm -rf /var/cache/*                                                 && \
+RUN apt-get update                                                              && \
+    apt-get install -y --no-install-recommends default-jre-headless graphviz    && \
+    apt-get autoremove -y                                                       && \
+    rm -rf /var/cache/*                                                         && \
     rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip && \
-    pip install 'Sphinx                        == 1.7.4' \
-                'alabaster                     == 0.7.10' \
+    pip install 'Sphinx                        == 2.4.4' \
+                'alabaster                     == 0.7.12' \
+                'sphinx_press_theme            == 0.5.1' \
                 'sphinx-autobuild              == 0.7.1' \
-                'sphinx_bootstrap_theme        == 0.6.5' \
-                'sphinx-prompt                 == 1.0.0' \
-                'sphinx_rtd_theme              == 0.3.1' \
-                'sphinxcontrib-actdiag         == 0.8.5' \
-                'sphinxcontrib-blockdiag       == 1.5.5' \
-                'sphinxcontrib-nwdiag          == 0.9.5' \
-                'sphinxcontrib-plantuml        == 0.11'   \
-                'sphinxcontrib-seqdiag         == 0.8.5' \
-                'livereload                    == 2.5.2'
+                'sphinx_bootstrap_theme        == 0.7.1' \
+                'sphinx-prompt                 == 1.1.0' \
+                'sphinx_rtd_theme              == 0.4.3' \
+                'guzzle_sphinx_theme           == 0.7.11' \
+                'sphinxcontrib-actdiag         == 2.0.0' \
+                'sphinxcontrib-blockdiag       == 2.0.0' \
+                'sphinxcontrib-nwdiag          == 2.0.0' \
+                'sphinxcontrib-plantuml        == 0.18'   \
+                'sphinxcontrib-seqdiag         == 2.0.0' \
+                'livereload                    == 2.6.1'
 
 ADD plantuml.jar /opt/plantuml.jar
 
