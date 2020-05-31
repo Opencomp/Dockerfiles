@@ -16,9 +16,9 @@ RUN apk add --no-cache \
     && composer global require hirak/prestissimo \
     && pecl install pcov ast \
     && docker-php-ext-enable pcov ast \
-    # Uninstalling all required dev dependencies
+    # Uninstalling required dev dependencies
     # used during compiling of PHP extensions.
-    && apk del autoconf build-base \
+    && apk del autoconf\
     # Clearing package cache and temp directory
     && rm -rf /var/cache/apk/* /tmp/*
 
