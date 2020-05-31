@@ -7,6 +7,7 @@ RUN apk add --no-cache \
             autoconf build-base \
             # For installing composer dependencies
             yarn \
+            zlib \
             git \
             # For panther testing
             chromium \
