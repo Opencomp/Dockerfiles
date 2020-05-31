@@ -4,7 +4,7 @@ LABEL maintainer="Jean Traullé <jean@opencomp.fr>"
 
 RUN apk add --no-cache \
             # For building php extensions
-            autoconf build-base \
+            autoconf automake build-base \
             # For installing composer dependencies
             yarn \
             zlib \
