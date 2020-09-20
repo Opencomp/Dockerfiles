@@ -2,9 +2,7 @@ FROM php:7.4-fpm-alpine3.11
 
 LABEL maintainer="Jean Traullé <jean@opencomp.fr>"
 
-RUN apk update && apk add --no-cache \
-            # Forcing the last update of curl
-            curl \
+RUN apk -U upgrade && apk add --no-cache \
             # For building/installing PECL redis PHP extension
             build-base autoconf \
             # For SimpleXML PHP extension
