@@ -13,7 +13,6 @@ RUN apk add --no-cache \
             chromium \
             chromium-chromedriver \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && composer global require hirak/prestissimo \
     && pecl install pcov ast \
     && docker-php-ext-enable pcov ast \
     # Clearing package cache and temp directory
