@@ -21,6 +21,5 @@ RUN apk add --no-cache \
     && rm -rf /var/cache/apk/* /tmp/*
 
 ENV TMPDIR /var/www/html/tmp
-ENV PANTHER_CHROME_DRIVER_BINARY /usr/lib/chromium/chromedriver
 ENV PANTHER_CHROME_BINARY /usr/bin/chromium-browser
 ENV PANTHER_NO_SANDBOX 1
