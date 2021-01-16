@@ -22,4 +22,5 @@ RUN apk add --no-cache \
 
 ENV TMPDIR /var/www/html/tmp
 ENV PANTHER_CHROME_BINARY /usr/bin/chromium-browser
+ENV PANTHER_EXTERNAL_BASE_URI="https://172.17.0.1:8443"
 ENV PANTHER_NO_SANDBOX 1
