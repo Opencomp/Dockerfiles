@@ -55,6 +55,6 @@ RUN apk -U upgrade && apk add --no-cache \
 # Get wkhtmltopdf from opencomp/wkhtmltopdf:0.12.5-alpine3.11
 # wkhtmltopdf with patched QT takes ~20m to compiles on i5
 #
-COPY --from=opencomp/wkhtmltopdf:0.12.6-alpine3.12 /bin/wkhtmltopdf /usr/bin/wkhtmltopdf
+COPY --from=opencomp/wkhtmltopdf:0.12.5-alpine3.11 /bin/wkhtmltopdf /usr/bin/wkhtmltopdf
 
 CMD ["php-fpm"]
