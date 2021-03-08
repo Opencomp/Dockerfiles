@@ -81,7 +81,7 @@ RUN apk add --no-cache \
 # Image
 FROM alpine:3.12
 
-RUN apk add --no-cache \
+RUN apk -U upgrade && apk add --no-cache \
     libstdc++ libx11 libxrender libxext libssl1.1 ca-certificates
 
 COPY --from=build-wkhtmltopdf /bin/wkhtmltopdf /bin/wkhtmltopdf
