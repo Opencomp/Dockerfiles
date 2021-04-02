@@ -22,8 +22,12 @@ RUN apk -U upgrade && apk add --no-cache \
     # For optimizing uploaded images (2)
     # ! jpegoptim and pngquant are in community repo
     && apk add --no-cache \
-               --repository http://dl-cdn.alpinelinux.org/alpine/v3.11/community/ \
+               --repository http://dl-cdn.alpinelinux.org/alpine/v3.13/community/ \
                jpegoptim pngquant \
+    # Add musl from edge repository to fix CVE-2020-28928
+    && apk add --no-cache \
+               --repository http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
+               musl \
     # Install PHP extensions
     # -- mbstring intl simplexml are CakePHP requirements
     # -- pdo and pdo_mysql allow connection to MySQL using PHP Data Objects
