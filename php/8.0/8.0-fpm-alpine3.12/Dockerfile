@@ -22,7 +22,7 @@ RUN apk -U upgrade && apk add --no-cache \
     # For optimizing uploaded images (2)
     # ! jpegoptim and pngquant are in community repo
     && apk add --no-cache \
-               --repository http://dl-cdn.alpinelinux.org/alpine/v3.11/community/ \
+               --repository http://dl-cdn.alpinelinux.org/alpine/v3.12/community/ \
                jpegoptim pngquant \
     # Install PHP extensions
     # -- mbstring intl simplexml are CakePHP requirements
