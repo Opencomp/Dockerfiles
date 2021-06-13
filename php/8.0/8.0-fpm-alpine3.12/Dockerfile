@@ -52,9 +52,9 @@ RUN apk -U upgrade && apk add --no-cache \
     && sed -i -e 's/listen.*/listen = 0.0.0.0:9000/' /usr/local/etc/php-fpm.conf \
     && echo "expose_php=0" > /usr/local/etc/php/php.ini
 
-# Get wkhtmltopdf from opencomp/wkhtmltopdf:0.12.5-alpine3.11
+# Get wkhtmltopdf from opencomp/wkhtmltopdf:0.12.6-alpine3.12
 # wkhtmltopdf with patched QT takes ~20m to compiles on i5
 #
-COPY --from=opencomp/wkhtmltopdf:0.12.6-alpine3.12 /bin/wkhtmltopdf /usr/bin/wkhtmltopdf
+COPY --from=jtraulle/wkhtmltopdf:0.12.6-alpine3.12 /bin/wkhtmltopdf /usr/bin/wkhtmltopdf
 
 CMD ["php-fpm"]
