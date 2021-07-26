@@ -1,4 +1,4 @@
-FROM opencomp/php:8.0-fpm-alpine3.13
+FROM jtraulle/php:8.0-fpm-alpine3.13
 
 LABEL maintainer="Jean Traullé <jean@opencomp.fr>"
 
