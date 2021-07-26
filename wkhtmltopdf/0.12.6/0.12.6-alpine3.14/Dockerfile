@@ -12,7 +12,7 @@ COPY conf/* /tmp/patches/
 # Install needed packages
 RUN apk add --no-cache \
     libstdc++ libx11 libxrender libxext libssl1.1 ca-certificates fontconfig freetype \
-    ttf-dejavu ttf-droid ttf-freefont ttf-liberation ttf-ubuntu-font-family \
+    ttf-dejavu ttf-droid ttf-freefont ttf-liberation \
 && apk add --no-cache --virtual .build-deps \
    g++==8.3.0-r0 --repository=http://dl-cdn.alpinelinux.org/alpine/v3.10/main \
    git gtk+ gtk+-dev make mesa-dev openssl-dev patch fontconfig-dev freetype-dev \
