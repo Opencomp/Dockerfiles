@@ -7,6 +7,6 @@ workflows:
         script: |
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           brew install --cask docker
-          open /Applications/Docker.app
+          open -gj -a /Applications/Docker.app
           sleep 20
           docker build . -t jtraulle/php:8.1-fpm-alpine3.15-arm64
