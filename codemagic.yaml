@@ -5,9 +5,11 @@ workflows:
       - name: Build jtraulle/php
         working_directory: php/8.1/8.1-fpm-alpine3.15
         script: |
-          sh <(curl -L https://nixos.org/nix/install) --daemon
-          source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-          nix-env -iA nixpkgs.docker
-          nix-env -iA nixpkgs.colima
-          colima start
+          spctl --master-disable
+          brew install --cask docker
+          sudo /Applications/Docker.app/Contents/MacOS/Docker --unattended --install-privileged-components
+          open -a /Applications/Docker.app --args --unattended --accept-license
+          echo "Waiting for Docker to be ready..."
+          while ! /Applications/Docker.app/Contents/Resources/bin/docker info &>/dev/null; do sleep 1; done
           docker build . -t jtraulle/php:8.1-fpm-alpine3.15-arm64
+          spctl --master-enable
