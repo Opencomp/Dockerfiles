@@ -8,7 +8,7 @@ workflows:
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           brew install --cask docker
           sudo /Applications/Docker.app/Contents/MacOS/Docker --unattended --install-privileged-components
-          open -a /Applications/Docker.app --args --unattended --accept-license
+          open -a /Applications/Docker.app --args --unattended --accept-license &
           echo -e "Waiting for Docker daemon to be available"
           until docker info > /dev/null 2>&1
           do
